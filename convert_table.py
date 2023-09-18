@@ -16,9 +16,10 @@ OPENAI_API_KEY=os.getenv('OPENAI_API_KEY')
 def convert_table(source_csv, template_csv, target_csv):
 
     df1=pd.read_csv(source_csv).to_string()
-    df2=pd.read_csv(template_csv).to_string()
+    df2=pd.read_csv(template_csv).head().to_string()
     print(type(df1),type(df2))
     print(df1)
+    print(df2)
     template='''Your task is to take this Dataframe2 as a template dataframe and transform dataframe1 values in dataframe2 template, Do it in this manner that it cover every row of dataframe1. 
 
                      Output Instructions: 
@@ -30,7 +31,7 @@ def convert_table(source_csv, template_csv, target_csv):
                      Dataframe1: {dataframe1}
                      Dataframe2: {dataframe2}
                      '''
-    # print(df2)
+    print(df2)
     prompt_template=PromptTemplate(input_variables=["dataframe1","dataframe2"],template=template)
     chain = LLMChain(llm=ChatOpenAI(openai_api_key=OPENAI_API_KEY,model='gpt-3.5-turbo'), prompt=prompt_template,verbose=True)
     output=chain.run(dataframe1=df1,dataframe2=df2)

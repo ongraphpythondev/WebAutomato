@@ -27,13 +27,16 @@ python3 convert_table.py --source ./DATA/table_A.csv --template ./DATA/template.
 
 ### This is the output return by the openai model
 ```
-```python
-df3 = pd.DataFrame()
-df3['Date'] = pd.to_datetime(df1['Date_of_Policy']).dt.strftime('%d-%m-%Y')
-df3['EmployeeName'] = df1['FullName']
-df3['Plan'] = df1['Insurance_Plan'].str.replace(' Plan', '')
-df3['PolicyNumber'] = df1['Policy_No'].str.replace('-', '')
-df3['Premium'] = df1['Monthly_Premium'].astype(float)
-df3
+Date,EmployeeName,Plan,PolicyNumber,Premium
+05/01/2023,John Doe,Gold,AB-12345,150.0
+05/02/2023,Jane Smith,Silver,CD-67890,100.0
+05/03/2023,Michael Brown,Bronze,EF-10111,50.0
+05/04/2023,Alice Johnson,Gold,GH-12121,150.0
+05/05/2023,Bob Wilson,Silver,IJ-13131,100.0
+05/06/2023,Carol Martinez,Bronze,KL-14141,50.0
+05/07/2023,David Anderson,Gold,MN-15151,150.0
+05/08/2023,Eva Thomas,Silver,OP-16161,100.0
+05/09/2023,Frank Jackson,Bronze,QR-17171,50.0
+05/10/2023,Grace White,Gold,ST-18181,150.0
 
 ```
